@@ -7,7 +7,7 @@ Website der Baugruppe Zukunftshaus Karlsruhe für gemeinschaftliches, bezahlbare
 
 - [ ] favicon hinzufügen
 - [x] fonts lokal einbinden
-- [ ] E-Mail-Adresse verbergen
+- [x] E-Mail-Adresse verbergen
 
 == Projektstruktur
 

@@ -1,0 +1,57 @@
+= Zukunftshaus Karlsruhe - Website
+
+Website der Baugruppe Zukunftshaus Karlsruhe für gemeinschaftliches, bezahlbares und nachhaltiges Wohnen im Quartier Zukunft Nord.
+
+== Projektstruktur
+
+[source]
+----
+├── index.html          # Hauptseite
+├── impressum.html      # Impressum
+├── css/
+│   └── style.css       # Stylesheet
+└── images/
+    └── logo.png        # Logo
+----
+
+== Lokale Entwicklung
+
+Die Website besteht aus statischen HTML-Dateien ohne Build-Prozess.
+
+=== Option 1: Direkt im Browser
+
+Die Datei `index.html` kann direkt im Browser geöffnet werden.
+
+=== Option 2: Lokaler Server
+
+[source,bash]
+----
+npx serve
+----
+
+Anschließend im Browser http://localhost:3000 aufrufen.
+
+== Seitenstruktur
+
+Die Hauptseite (`index.html`) enthält folgende Abschnitte:
+
+* *Hero* - Willkommensbereich mit Claim
+* *Status* - Timeline mit Projektphasen
+* *Über uns* - Vorstellung der Baugruppe und Werte
+* *Das Projekt* - Standort, Wohnformen, Gemeinschaftsräume, Nachhaltigkeit
+* *Mitmachen* - Optionen zur Beteiligung
+* *Kontakt* - E-Mail-Kontakt
+
+== Styling
+
+Das Stylesheet (`css/style.css`) verwendet CSS Custom Properties für:
+
+* Farbpalette (abgeleitet vom Logo)
+* Abstände
+* Typografie
+
+Responsive Breakpoints:
+
+* Mobile: < 768px
+* Tablet: 768px - 1023px
+* Desktop: >= 1024px

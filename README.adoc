@@ -15,8 +15,11 @@ Website der Baugruppe Zukunftshaus Karlsruhe für gemeinschaftliches, bezahlbare
 ----
 ├── index.html          # Hauptseite
 ├── impressum.html      # Impressum
+├── setup-fonts.sh      # Script: Fonts herunterladen
+├── create-favicon.sh   # Script: Favicon aus Logo erstellen
 ├── css/
 │   └── style.css       # Stylesheet
+├── fonts/              # Lokale Fonts (Inter, Font Awesome)
 └── images/
     └── logo.png        # Logo
 ----

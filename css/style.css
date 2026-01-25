@@ -781,7 +781,6 @@ section {
 
 .footer-brand .logo img {
   height: 50px;
-  filter: brightness(0) invert(1);
   margin-bottom: var(--spacing-sm);
   mix-blend-mode: normal;
 }

@@ -2,6 +2,13 @@
 
 Website der Baugruppe Zukunftshaus Karlsruhe für gemeinschaftliches, bezahlbares und nachhaltiges Wohnen im Quartier Zukunft Nord.
 
+
+== Todo
+
+- [ ] favicon hinzufügen
+- [x] fonts lokal einbinden
+- [ ] E-Mail-Adresse verbergen
+
 == Projektstruktur
 
 [source]
@@ -12,6 +19,15 @@ Website der Baugruppe Zukunftshaus Karlsruhe für gemeinschaftliches, bezahlbare
 │   └── style.css       # Stylesheet
 └── images/
     └── logo.png        # Logo
+----
+
+== Fonts aktualisieren
+
+Die Fonts (Inter, Font Awesome) sind im Repository enthalten. Bei Bedarf können sie mit folgendem Script aktualisiert werden:
+
+[source,bash]
+----
+./setup-fonts.sh
 ----
 
 == Lokale Entwicklung

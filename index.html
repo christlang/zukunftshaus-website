@@ -383,7 +383,10 @@
           Du hast Interesse am Zukunftshaus oder möchtest mehr erfahren?
           Schreib uns einfach eine E-Mail. Wir melden uns bei dir!
         </p>
-        <div class="email-placeholder" data-encoded="Z2VtZWluc2FtQHp1a3VudGZzaGF1cy1rYS5kZQ=="></div>
+        <a href="#" class="contact-email email-container">
+          <span class="contact-email-icon"><i class="fa-solid fa-envelope"></i></span>
+          <span class="email-text"></span>
+        </a>
       </div>
     </div>
   </section>
@@ -412,7 +415,7 @@
           <h4>Kontakt</h4>
           <p>
             Baugruppe Zukunftshaus Karlsruhe<br>
-            <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#103;&#101;&#109;&#101;&#105;&#110;&#115;&#97;&#109;&#64;&#122;&#117;&#107;&#117;&#110;&#102;&#116;&#115;&#104;&#97;&#117;&#115;&#45;&#107;&#97;&#46;&#100;&#101;">&#103;&#101;&#109;&#101;&#105;&#110;&#115;&#97;&#109;&#64;&#122;&#117;&#107;&#117;&#110;&#102;&#116;&#115;&#104;&#97;&#117;&#115;&#45;&#107;&#97;&#46;&#100;&#101;</a>
+            <a href="#" class="email-container"><span class="email-text"></span></a>
           </p>
         </div>
       </div>
@@ -422,34 +425,6 @@
     </div>
   </footer>
 
-  <!-- JavaScript für mobile Navigation -->
-  <script>
-    // Mobile Navigation Toggle
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.getElementById('navMenu');
-
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-
-    // Close menu when clicking a link
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-      });
-    });
-
-    // Header shadow on scroll
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-  </script>
-
-<script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

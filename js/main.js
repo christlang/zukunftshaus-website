@@ -1,19 +1,50 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const emailPlaceholders = document.querySelectorAll('.email-placeholder');
-  emailPlaceholders.forEach(function(placeholder) {
-    const encodedEmail = placeholder.getAttribute('data-encoded');
-    const decodedEmail = atob(encodedEmail);
-    const emailLink = document.createElement('a');
-    emailLink.href = 'mailto:' + decodedEmail;
-    
-    // Check if the placeholder is in the contact section of index.html
-    if (placeholder.closest('.contact-content')) {
-      emailLink.className = 'contact-email';
-      emailLink.innerHTML = `<span class="contact-email-icon"><i class="fa-solid fa-envelope"></i></span> ${decodedEmail}`;
-    } else {
-      emailLink.textContent = decodedEmail;
+// Mobile Navigation Toggle
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+
+if (navToggle && navMenu) {
+  navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+}
+
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (navMenu) {
+      navMenu.classList.remove('active');
     }
-    
-    placeholder.parentNode.replaceChild(emailLink, placeholder);
   });
 });
+
+// Header shadow on scroll
+const header = document.getElementById('header');
+if (header) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+}
+
+// E-Mail Masking
+(function() {
+  const user = 'gemeinsam';
+  const domain = 'zukunftshaus-ka.de';
+  const email = user + '@' + domain;
+  const mailto = 'mailto:' + email;
+
+  document.querySelectorAll('.email-container').forEach(container => {
+    container.href = mailto;
+    const textSpan = container.querySelector('.email-text');
+    if (textSpan) {
+      textSpan.textContent = email;
+    } else {
+      // Fallback for containers without a dedicated text span
+      container.textContent = email;
+    }
+  });
+}());

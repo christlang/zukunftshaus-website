@@ -56,7 +56,7 @@
 
         <h2>Kontakt</h2>
         <p>
-          E-Mail: <span class="email-placeholder" data-encoded="Z2VtZWluc2FtQHp1a3VudGZzaGF1cy1rYS5kZQ=="></span>
+          E-Mail: <a href="#" class="email-container"><span class="email-text"></span></a>
         </p>
 
         <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
@@ -123,22 +123,6 @@
     </div>
   </footer>
 
-  <!-- JavaScript für mobile Navigation -->
-  <script>
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.getElementById('navMenu');
-
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-      });
-    });
-  </script>
-
-<script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

@@ -8,6 +8,7 @@
   --color-primary: #5B8A4E;      /* Grün (Hausdach) */
   --color-primary-dark: #4A7340;
   --color-primary-light: #7BA36E;
+  --color-header: #F5F0E6;
 
   /* Akzentfarben */
   --color-accent-red: #D94E2A;
@@ -100,14 +101,15 @@ a:hover {
   left: 0;
   right: 0;
   height: var(--header-height);
-  background-color: var(--color-background);
-  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-header);
+  border-bottom: 2px solid #E0D9CC;
   z-index: 1000;
   transition: border-color 0.3s ease;
 }
 
 .header.scrolled {
-  border-bottom-color: #ddd;
+  border-bottom-color: #D0C9BC;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .header .container {

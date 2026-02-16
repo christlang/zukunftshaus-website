@@ -466,10 +466,16 @@ section {
   color: var(--color-text-light);
 }
 
-/* Gruppenfoto Platzhalter */
+/* Gruppenfoto */
 .group-photo {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.group-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
 }
 
 .image-placeholder {

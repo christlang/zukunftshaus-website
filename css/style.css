@@ -566,11 +566,22 @@ section {
 }
 
 .join-options {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-lg);
+}
+
+@media (max-width: 1200px) {
+  .join-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .join-options {
+    grid-template-columns: 1fr;
+  }
 }
 
 .join-card {
@@ -579,15 +590,14 @@ section {
   border-radius: var(--border-radius);
   border: 1px solid var(--color-border);
   transition: border-color 0.3s ease;
-  flex: 1 1 320px;
-  display: flex;
-  flex-direction: column;
+  grid-row: span 6;
+  display: grid;
+  grid-template-rows: subgrid;
 }
 
 
 .join-card .btn {
   align-self: center;
-  margin-top: auto;
   width: 250px;
   white-space: nowrap;
 }
@@ -612,13 +622,11 @@ section {
 
 .join-card p {
   color: var(--color-text-light);
-  margin-bottom: var(--spacing-sm);
 }
 
 .join-card ul {
   list-style: none;
   padding: 0;
-  margin-bottom: var(--spacing-md);
 }
 
 .join-card li {
@@ -639,8 +647,7 @@ section {
   font-size: 0.875rem;
   font-style: italic;
   color: var(--color-text-light);
-  margin-top: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
+  padding-top: var(--spacing-sm);
   padding-top: var(--spacing-sm);
   border-top: 1px solid var(--color-border);
 }

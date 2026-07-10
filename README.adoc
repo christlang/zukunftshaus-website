@@ -50,12 +50,13 @@ Die Website besteht aus statischen HTML-Dateien ohne Build-Prozess.
 
 === Option 1: Direkt im Browser
 
-Die Datei `index.html` kann direkt im Browser geöffnet werden.
+Die Datei `site/index.html` kann direkt im Browser geöffnet werden.
 
 === Option 2: Lokaler Server
 
 [source,bash]
 ----
+cd site
 npx serve
 ----
 

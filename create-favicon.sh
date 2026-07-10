@@ -6,7 +6,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-IMAGES_DIR="$SCRIPT_DIR/images"
+IMAGES_DIR="$SCRIPT_DIR/site/images"
 LOGO="$IMAGES_DIR/logo.png"
 
 if [ ! -f "$LOGO" ]; then

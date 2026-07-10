@@ -5,7 +5,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-FONTS_DIR="$SCRIPT_DIR/fonts"
+FONTS_DIR="$SCRIPT_DIR/site/fonts"
 
 echo "Erstelle fonts-Verzeichnis..."
 mkdir -p "$FONTS_DIR"

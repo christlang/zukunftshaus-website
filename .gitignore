@@ -1,2 +1,5 @@
 .idea
-upload.sh
+uploadTest.sh
+node_modules
+tests/backstop/backstop_data/bitmaps_test
+tests/backstop/backstop_data/html_report

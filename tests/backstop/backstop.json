@@ -1,0 +1,44 @@
+{
+  "id": "zukunftshaus_prod_vs_cutl",
+  "viewports": [
+    { "label": "mobile", "width": 375, "height": 812 },
+    { "label": "tablet", "width": 768, "height": 1024 },
+    { "label": "desktop", "width": 1440, "height": 900 }
+  ],
+  "scenarios": [
+    {
+      "label": "Startseite",
+      "referenceUrl": "https://www.zukunftshaus-ka.de/",
+      "url": "https://zukunftshaus.cutl.de/",
+      "delay": 500,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true,
+      "selectors": ["document"]
+    },
+    {
+      "label": "Impressum",
+      "referenceUrl": "https://www.zukunftshaus-ka.de/impressum.html",
+      "url": "https://zukunftshaus.cutl.de/impressum.html",
+      "delay": 500,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true,
+      "selectors": ["document"]
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": ["--no-sandbox"]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

@@ -1,0 +1,13 @@
+{
+  "name": "zukunftshaus-backstop",
+  "private": true,
+  "scripts": {
+    "reference": "backstop reference",
+    "test": "backstop test",
+    "approve": "backstop approve",
+    "openReport": "backstop openReport"
+  },
+  "devDependencies": {
+    "backstopjs": "^6.3.25"
+  }
+}

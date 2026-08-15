@@ -86,3 +86,28 @@ Responsive Breakpoints:
 * Mobile: < 768px
 * Tablet: 768px - 1023px
 * Desktop: >= 1024px
+
+== Visueller Vergleich mit BackstopJS
+
+Unter `tests/backstop/` liegt ein BackstopJS-Setup, das die Produktivseite
+(`https://www.zukunftshaus-ka.de/`) per Screenshot-Vergleich gegen eine
+andere Domain (z. B. eine Test-/Staging-Instanz wie `https://zukunftshaus.cutl.de/`)
+prüft - für Startseite und Impressum, jeweils in den Viewports mobile
+(375px), tablet (768px) und desktop (1440px).
+
+Die zu vergleichenden URLs sind pro Szenario in `tests/backstop/backstop.json`
+über `referenceUrl` (Referenz) und `url` (zu testende Seite) hinterlegt.
+
+[source,bash]
+----
+cd tests/backstop
+npm install
+npx backstop reference   # Referenz-Screenshots von referenceUrl erzeugen
+npx backstop test        # Vergleich gegen url, Diff-Report öffnen
+----
+
+link:tests/backstop/backstop_data/html_report/index.html[Backstopjs-Report]
+
+Der HTML-Report (inkl. Slider-Ansicht je Szenario) liegt anschließend unter
+`tests/backstop/backstop_data/html_report/index.html` und wird nicht
+versioniert.

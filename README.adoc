@@ -17,13 +17,16 @@ Erreichbar unter: https://christlang.github.io/zukunftshaus-website/
 ----
 ├── index.html          # Hauptseite
 ├── impressum.html      # Impressum
-├── setup-fonts.sh      # Script: Fonts herunterladen
-├── create-favicon.sh   # Script: Favicon aus Logo erstellen
+├── scripts/
+│   ├── setup-fonts.sh        # Script: Fonts herunterladen
+│   ├── create-favicon.sh    # Script: Favicon aus Logo erstellen
+│   └── create-logo-small.sh # Script: mobil-optimierte Logo-Variante erstellen
 ├── css/
 │   └── style.css       # Stylesheet
 ├── fonts/              # Lokale Fonts (Inter, Font Awesome)
 └── images/
-    └── logo.png        # Logo
+    ├── logo.png        # Logo (Original, 1024x1024)
+    └── logo-small.png  # Logo, klein/komprimiert (Header/Footer, mobile)
 ----
 
 == Fonts aktualisieren
@@ -32,7 +35,7 @@ Die Fonts (Inter, Font Awesome) sind im Repository enthalten. Bei Bedarf können
 
 [source,bash]
 ----
-./setup-fonts.sh
+./scripts/setup-fonts.sh
 ----
 
 == Favicon aktualisieren
@@ -41,8 +44,24 @@ Das Favicon wird aus dem Logo generiert. Benötigt ImageMagick.
 
 [source,bash]
 ----
-./create-favicon.sh
+./scripts/create-favicon.sh
 ----
+
+== Mobil-optimiertes Logo aktualisieren
+
+Header und Footer zeigen das Logo nur mit 50-60px Höhe an, das Original
+(`site/images/logo.png`) ist jedoch 1024x1024px groß (~1,4 MB). Für diese
+Anzeigegröße wird stattdessen `site/images/logo-small.png` ausgeliefert
+(200x200px, komprimiert via `pngquant`, ~16 KB) - über `srcset` eingebunden,
+sodass auch bei Retina-Displays noch genug Auflösung vorhanden ist. Bei
+Bedarf (z. B. nach Logo-Änderung) neu erzeugen mit:
+
+[source,bash]
+----
+./scripts/create-logo-small.sh
+----
+
+Benötigt ImageMagick und `pngquant`.
 
 == Lokale Entwicklung
 

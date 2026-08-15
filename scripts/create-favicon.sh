@@ -1,12 +1,12 @@
 #!/bin/bash
 # Script zum Erstellen des Favicons aus dem Logo
 # Benötigt: ImageMagick
-# Führt aus: ./create-favicon.sh
+# Führt aus: ./scripts/create-favicon.sh
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-IMAGES_DIR="$SCRIPT_DIR/site/images"
+IMAGES_DIR="$SCRIPT_DIR/../site/images"
 LOGO="$IMAGES_DIR/logo.png"
 
 if [ ! -f "$LOGO" ]; then

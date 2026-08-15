@@ -1,11 +1,11 @@
 #!/bin/bash
 # Script zum Herunterladen und Einrichten der lokalen Fonts
-# Führt aus: ./setup-fonts.sh
+# Führt aus: ./scripts/setup-fonts.sh
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-FONTS_DIR="$SCRIPT_DIR/site/fonts"
+FONTS_DIR="$SCRIPT_DIR/../site/fonts"
 
 echo "Erstelle fonts-Verzeichnis..."
 mkdir -p "$FONTS_DIR"

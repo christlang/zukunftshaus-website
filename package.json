@@ -1,0 +1,8 @@
+{
+  "name": "zukunftshaus-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-aktuelles.mjs"
+  }
+}

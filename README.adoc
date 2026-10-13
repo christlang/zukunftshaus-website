@@ -16,6 +16,7 @@ Erreichbar unter: https://christlang.github.io/zukunftshaus-website/
 [source]
 ----
 ├── index.html          # Hauptseite
+├── aktuelles.html      # Aktuelles (Inhalte generiert aus content/aktuelles.json)
 ├── impressum.html      # Impressum
 ├── scripts/
 │   ├── setup-fonts.sh        # Script: Fonts herunterladen
@@ -63,9 +64,35 @@ Bedarf (z. B. nach Logo-Änderung) neu erzeugen mit:
 
 Benötigt ImageMagick und `pngquant`.
 
+== Aktuelles pflegen
+
+Die Einträge der Seite `site/aktuelles.html` und die vier Post-its auf der
+Startseite werden aus `content/aktuelles.json` erzeugt. Jeder Eintrag hat:
+
+* `id` - eindeutig, nur `a-z`, `0-9` und `-` (wird als Anker `aktuelles.html#id` verwendet)
+* `date` - Datum im Format `JJJJ-MM-TT`
+* `title` - Überschrift (reiner Text)
+* `teaser` - Kurztext für das Post-it (reiner Text)
+* `body` - Liste von Absätzen, HTML (z. B. Links) ist erlaubt
+
+Die Reihenfolge in der Datei ist egal, sortiert wird nach Datum (neueste zuerst).
+Nach einer Änderung den Build ausführen:
+
+[source,bash]
+----
+npm run build
+----
+
+Das Script `scripts/build-aktuelles.mjs` (ohne Abhängigkeiten) ersetzt den Bereich
+zwischen den Markern `<!-- AKTUELLES:...:START -->` und `<!-- AKTUELLES:...:END -->`
+in `site/index.html` und `site/aktuelles.html`. Die erzeugten Dateien werden mit
+eingecheckt; der Deploy-Workflow und `uploadTest.sh` führen den Build zusätzlich aus.
+Inhalte zwischen den Markern nicht von Hand bearbeiten.
+
 == Lokale Entwicklung
 
-Die Website besteht aus statischen HTML-Dateien ohne Build-Prozess.
+Die Website besteht aus statischen HTML-Dateien. Einziger Build-Schritt ist die
+Erzeugung der Aktuelles-Inhalte (siehe oben).
 
 === Option 1: Direkt im Browser
 

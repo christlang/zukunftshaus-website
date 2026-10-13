@@ -1120,3 +1120,126 @@ section {
   margin-top: var(--spacing-sm);
   font-style: italic;
 }
+
+/* ===========================================
+   Aktuelles: Post-its (Startseite)
+   =========================================== */
+.news {
+  background-color: var(--color-background);
+}
+
+.postits {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+}
+
+@media (min-width: 768px) {
+  .postits {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .postits {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.postit {
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  padding: var(--spacing-md);
+  background-color: #FCEFB4;
+  color: var(--color-text);
+  box-shadow: 2px 6px 14px rgba(0, 0, 0, 0.12);
+  transform: rotate(-1.5deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.postit:nth-child(2) {
+  background-color: #DCEBD5;
+  transform: rotate(1deg);
+}
+
+.postit:nth-child(3) {
+  background-color: #D8E4F0;
+  transform: rotate(-0.5deg);
+}
+
+.postit:nth-child(4) {
+  background-color: #F7DCD3;
+  transform: rotate(1.5deg);
+}
+
+.postit:hover,
+.postit:focus-visible {
+  color: var(--color-text);
+  transform: rotate(0) scale(1.03);
+  box-shadow: 4px 10px 20px rgba(0, 0, 0, 0.16);
+}
+
+.postit time {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+}
+
+.postit h3 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  margin: var(--spacing-xs) 0;
+}
+
+.postit p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.postit-more {
+  margin-top: var(--spacing-sm);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+}
+
+.news-all {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+}
+
+/* ===========================================
+   Aktuelles: Blog-Seite
+   =========================================== */
+.news-entry {
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--color-border);
+  scroll-margin-top: var(--header-height);
+}
+
+.news-entry:first-child {
+  padding-top: 0;
+}
+
+.news-entry time {
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.legal-content .news-entry h2 {
+  margin-top: var(--spacing-xs);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+}
+
+.footer-bottom a {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-bottom a:hover {
+  color: white;
+}

@@ -8,7 +8,7 @@ Static website for "Zukunftshaus Karlsruhe" - a housing cooperative (Baugruppe) 
 
 ## Development
 
-This is a simple static HTML/CSS website with no build tools or dependencies. To develop:
+This is a simple static HTML/CSS website without dependencies. The only build step is `npm run build` (`scripts/build-aktuelles.mjs`), which renders `content/aktuelles.json` into `site/aktuelles.html` and the post-its in `site/index.html` between `<!-- AKTUELLES:...:START/END -->` markers. Never edit content between these markers by hand; generated output is committed. To develop:
 
 - Open `index.html` directly in a browser, or
 - Use any local server (e.g., `python -m http.server 8000`)
@@ -16,6 +16,7 @@ This is a simple static HTML/CSS website with no build tools or dependencies. To
 ## Architecture
 
 **Files:**
+- `aktuelles.html` - News page (generated from `content/aktuelles.json`)
 - `index.html` - Main landing page with all sections (hero, status timeline, about, project details, join options, contact)
 - `impressum.html` - Legal notice page (German Impressum requirement)
 - `css/style.css` - All styling using CSS custom properties

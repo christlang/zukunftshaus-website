@@ -15,6 +15,12 @@
   --color-accent-yellow: #E8B32A;
   --color-accent-blue: #2B5C8A;
 
+  /* Post-it-Farben (Aktuelles) */
+  --color-postit-1: #D04D33;
+  --color-postit-2: #EB8C27;
+  --color-postit-3: #297CA3;
+  --color-postit-4: #456745;
+
   /* Neutrale Farben - heller und luftiger */
   --color-background: #FFFFFF;
   --color-background-alt: #FAFAFA;
@@ -1152,38 +1158,40 @@ section {
   flex-direction: column;
   min-height: 220px;
   padding: var(--spacing-md);
-  background-color: #FCEFB4;
-  color: var(--color-text);
+  --postit-text: #FFFFFF;
+  background-color: var(--color-postit-1);
+  color: var(--postit-text);
   box-shadow: 2px 6px 14px rgba(0, 0, 0, 0.12);
   transform: rotate(-1.5deg);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .postit:nth-child(2) {
-  background-color: #DCEBD5;
+  --postit-text: var(--color-text);
+  background-color: var(--color-postit-2);
   transform: rotate(1deg);
 }
 
 .postit:nth-child(3) {
-  background-color: #D8E4F0;
+  background-color: var(--color-postit-3);
   transform: rotate(-0.5deg);
 }
 
 .postit:nth-child(4) {
-  background-color: #F7DCD3;
+  background-color: var(--color-postit-4);
   transform: rotate(1.5deg);
 }
 
 .postit:hover,
 .postit:focus-visible {
-  color: var(--color-text);
+  color: var(--postit-text);
   transform: rotate(0) scale(1.03);
   box-shadow: 4px 10px 20px rgba(0, 0, 0, 0.16);
 }
 
 .postit time {
   font-size: 0.875rem;
-  color: var(--color-text-light);
+  opacity: 0.8;
 }
 
 .postit h3 {
@@ -1203,7 +1211,6 @@ section {
   margin-top: var(--spacing-sm);
   font-size: 0.875rem;
   font-weight: var(--font-weight-medium);
-  color: var(--color-primary);
 }
 
 .news-all {

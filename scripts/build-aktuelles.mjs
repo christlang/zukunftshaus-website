@@ -1,10 +1,12 @@
-// Erzeugt die Aktuelles-Inhalte aus content/aktuelles.json als statisches HTML.
+// Erzeugt die Aktuelles-Inhalte aus content/aktuelles/*.md als statisches HTML.
+// Jede Nachricht liegt in einer eigenen Markdown-Datei JJJJ-MM-TT-<id>.md mit
+// title und teaser im Frontmatter; Datum und id werden aus dem Dateinamen gelesen.
 // Ersetzt den Bereich zwischen <!-- AKTUELLES:<name>:START --> und
 // <!-- AKTUELLES:<name>:END --> in den Seiten unter site/.
 //
 // Aufruf: node scripts/build-aktuelles.mjs
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -27,28 +29,76 @@ function escapeHtml(text) {
     .replace(/"/g, '&quot;');
 }
 
-function validate(entries) {
-  const ids = new Set();
-  for (const entry of entries) {
-    for (const field of ['id', 'date', 'title', 'teaser', 'body']) {
-      if (!entry[field]) {
-        throw new Error(`Eintrag ${JSON.stringify(entry.id ?? entry.title)}: Feld "${field}" fehlt`);
-      }
-    }
-    if (!/^[a-z0-9-]+$/.test(entry.id)) {
-      throw new Error(`Eintrag "${entry.id}": id darf nur a-z, 0-9 und - enthalten`);
-    }
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(entry.date)) {
-      throw new Error(`Eintrag "${entry.id}": date muss im Format JJJJ-MM-TT sein`);
-    }
-    if (ids.has(entry.id)) {
-      throw new Error(`Eintrag "${entry.id}": id ist doppelt vergeben`);
-    }
-    ids.add(entry.id);
+const CONTENT_DIR = 'content/aktuelles';
+const FILENAME = /^(\d{4}-\d{2}-\d{2})-([a-z0-9-]+)\.md$/;
+
+// Liest den Frontmatter-Block (--- key: value ---) am Anfang der Datei.
+function parseFrontmatter(file, source) {
+  const match = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/.exec(source.replace(/\r\n/g, '\n'));
+  if (!match) {
+    throw new Error(`${file}: Frontmatter (--- ... ---) am Dateianfang fehlt`);
   }
+  const data = {};
+  for (const line of match[1].split('\n')) {
+    if (!line.trim()) continue;
+    const colon = line.indexOf(':');
+    if (colon === -1) {
+      throw new Error(`${file}: Frontmatter-Zeile "${line}" hat kein "key: value"-Format`);
+    }
+    data[line.slice(0, colon).trim()] = line.slice(colon + 1).trim();
+  }
+  return { data, body: match[2].trim() };
 }
 
-// Titel und Teaser sind reiner Text, body-Absätze dürfen HTML (z. B. Links) enthalten.
+// Minimales Markdown: Absätze, Listen (- / *), **fett**, *kursiv*, [Links](url).
+// Inline-HTML wird unverändert übernommen.
+function renderInline(text) {
+  return text
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>');
+}
+
+function renderMarkdown(markdown) {
+  return markdown.split(/\n\s*\n/).map(block => {
+    const lines = block.split('\n').map(line => line.trim());
+    if (lines.every(line => /^[-*] /.test(line))) {
+      const items = lines.map(line => `\n            <li>${renderInline(line.slice(2))}</li>`).join('');
+      return `\n          <ul>${items}\n          </ul>`;
+    }
+    return `\n          <p>${renderInline(lines.join(' '))}</p>`;
+  }).join('');
+}
+
+function loadEntries() {
+  const ids = new Set();
+  return readdirSync(join(root, CONTENT_DIR))
+    .filter(file => file.endsWith('.md'))
+    .map(file => {
+      const path = `${CONTENT_DIR}/${file}`;
+      const match = FILENAME.exec(file);
+      if (!match) {
+        throw new Error(`${path}: Dateiname muss JJJJ-MM-TT-<id>.md sein (id nur a-z, 0-9 und -)`);
+      }
+      const [, date, id] = match;
+      if (ids.has(id)) {
+        throw new Error(`${path}: id "${id}" ist doppelt vergeben`);
+      }
+      ids.add(id);
+      const { data, body } = parseFrontmatter(path, readFileSync(join(root, path), 'utf8'));
+      for (const field of ['title', 'teaser']) {
+        if (!data[field]) {
+          throw new Error(`${path}: Feld "${field}" im Frontmatter fehlt`);
+        }
+      }
+      if (!body) {
+        throw new Error(`${path}: Text fehlt`);
+      }
+      return { id, date, title: data.title, teaser: data.teaser, body };
+    });
+}
+
+// Titel und Teaser sind reiner Text, der Text ist Markdown (Inline-HTML erlaubt).
 function renderPostit(entry) {
   return `
         <a class="postit" href="aktuelles.html#${entry.id}">
@@ -60,11 +110,10 @@ function renderPostit(entry) {
 }
 
 function renderArticle(entry) {
-  const paragraphs = entry.body.map(p => `\n          <p>${p}</p>`).join('');
   return `
         <article class="news-entry" id="${entry.id}">
           <time datetime="${entry.date}">${formatDate(entry.date)}</time>
-          <h2>${escapeHtml(entry.title)}</h2>${paragraphs}
+          <h2>${escapeHtml(entry.title)}</h2>${renderMarkdown(entry.body)}
         </article>`;
 }
 
@@ -85,8 +134,7 @@ function replaceBlock(file, name, html) {
   }
 }
 
-const entries = JSON.parse(readFileSync(join(root, 'content/aktuelles.json'), 'utf8'));
-validate(entries);
+const entries = loadEntries();
 entries.sort((a, b) => b.date.localeCompare(a.date));
 
 replaceBlock('site/index.html', 'POSTITS', entries.slice(0, POSTIT_COUNT).map(renderPostit).join(''));

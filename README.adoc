@@ -16,7 +16,7 @@ Erreichbar unter: https://christlang.github.io/zukunftshaus-website/
 [source]
 ----
 ├── index.html          # Hauptseite
-├── aktuelles.html      # Aktuelles (Inhalte generiert aus content/aktuelles.json)
+├── aktuelles.html      # Aktuelles (Inhalte generiert aus content/aktuelles/*.md)
 ├── impressum.html      # Impressum
 ├── scripts/
 │   ├── setup-fonts.sh        # Script: Fonts herunterladen
@@ -67,15 +67,38 @@ Benötigt ImageMagick und `pngquant`.
 == Aktuelles pflegen
 
 Die Einträge der Seite `site/aktuelles.html` und die vier Post-its auf der
-Startseite werden aus `content/aktuelles.json` erzeugt. Jeder Eintrag hat:
+Startseite werden aus den Markdown-Dateien im Verzeichnis `content/aktuelles/`
+erzeugt. Jede Nachricht ist eine eigene Datei mit dem Namen `JJJJ-MM-TT-<id>.md`,
+z. B. `2026-10-01-architekt-beauftragt.md`:
 
-* `id` - eindeutig, nur `a-z`, `0-9` und `-` (wird als Anker `aktuelles.html#id` verwendet)
-* `date` - Datum im Format `JJJJ-MM-TT`
+* Datum (`JJJJ-MM-TT`) - Datum der Nachricht
+* `<id>` - eindeutig, nur `a-z`, `0-9` und `-` (wird als Anker `aktuelles.html#id` verwendet)
+
+Am Anfang der Datei steht ein Frontmatter-Block mit:
+
 * `title` - Überschrift (reiner Text)
 * `teaser` - Kurztext für das Post-it (reiner Text)
-* `body` - Liste von Absätzen, HTML (z. B. Links) ist erlaubt
 
-Die Reihenfolge in der Datei ist egal, sortiert wird nach Datum (neueste zuerst).
+Danach folgt der Text in Markdown. Unterstützt werden Absätze (getrennt durch eine
+Leerzeile), Listen (`-` oder `*`), `**fett**`, `*kursiv*` und `[Links](https://...)`.
+HTML ist ebenfalls erlaubt.
+
+[source,markdown]
+----
+---
+title: Architekt beauftragt
+teaser: Frank Bühler (architectoo) startet mit der Planung.
+---
+
+Erster Absatz mit **wichtigem** Inhalt.
+
+Zweiter Absatz mit [Link](https://example.org).
+
+- Punkt eins
+- Punkt zwei
+----
+
+Sortiert wird nach Datum (neueste zuerst).
 Nach einer Änderung den Build ausführen:
 
 [source,bash]

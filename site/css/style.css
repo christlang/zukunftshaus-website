@@ -586,7 +586,7 @@ section {
 
 @media (max-width: 768px) {
   .join-options {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -733,6 +733,19 @@ section {
 
 .contact-email-icon {
   font-size: 1.5rem;
+}
+
+/* Kleine Displays: E-Mail-Button darf nicht breiter als der Bildschirm werden */
+@media (max-width: 480px) {
+  .contact-email {
+    max-width: 100%;
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-base);
+  }
+
+  .contact-email .email-text {
+    overflow-wrap: anywhere;
+  }
 }
 
 /* ===========================================

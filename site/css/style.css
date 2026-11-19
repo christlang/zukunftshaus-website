@@ -831,6 +831,12 @@ section {
   border-radius: var(--border-radius);
 }
 
+@media (max-width: 480px) {
+  .legal-content {
+    padding: var(--spacing-md) 0;
+  }
+}
+
 .legal-content h1 {
   color: var(--color-primary);
   margin-bottom: var(--spacing-lg);
@@ -897,7 +903,7 @@ section {
   position: absolute;
   top: 15px;
   left: 10%;
-  width: 30%; /* Aktuell: Phase 2 (Auswahlphase) - 10% = Phase 1, 30% = Phase 2, 50% = Phase 3, 70% = Phase 4, 90% = Phase 5 */
+  width: 48%; /* Aktuell: Optionsphase (Punkt 4 von 6); Punkte liegen bei ca. 8%, 25%, 42%, 58%, 75%, 92% */
   height: 3px;
   background: var(--color-primary);
   z-index: 1;
@@ -1024,10 +1030,17 @@ section {
 
 /* Responsive: Vertikale Timeline auf Mobile */
 @media (max-width: 768px) {
+  /* Kompaktere Abstände auf Mobile */
+  :root {
+    --spacing-md: 1.25rem;
+    --spacing-lg: 2.5rem;
+    --spacing-xl: 3.5rem;
+  }
+
   .timeline {
     flex-direction: column;
     align-items: flex-start;
-    padding-left: var(--spacing-lg);
+    padding-left: 0;
   }
 
   .timeline::before {
@@ -1043,7 +1056,7 @@ section {
     top: 0;
     left: 15px;
     width: 3px;
-    height: 10%; /* Adjust based on progress */
+    height: 56%; /* Bis zur Optionsphase (Punkt 4 von 6) */
   }
 
   .timeline-item {

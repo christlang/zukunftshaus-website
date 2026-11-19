@@ -23,6 +23,15 @@
       "misMatchThreshold": 0.1,
       "requireSameDimensions": true,
       "selectors": ["document"]
+    },
+    {
+      "label": "Aktuelles",
+      "referenceUrl": "https://www.zukunftshaus-ka.de/aktuelles.html",
+      "url": "https://zukunftshaus.cutl.de/aktuelles.html",
+      "delay": 500,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true,
+      "selectors": ["document"]
     }
   ],
   "paths": {
